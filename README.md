@@ -21,3 +21,5 @@ To add this module to your build, in your keymap's directory create a `keymap.js
     ]
 }
 ```
+
+One final note I highly recommend either using the `gen-version.sh` shell script to update the `qmk_version.h` file or manually edit the `qmk_version.h` so that it matches your actual QMK source version.
