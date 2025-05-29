@@ -5,13 +5,14 @@ I highly recommend reading the [documentation](https://docs.qmk.fm/features/comm
 ---
 
 To boil it down though the following should be done in your QMK source / git cloned directory:
+
 mkdir -p modules
 
 git submodule add https://github.com/SRGBmods/QMK_Community_Module modules/signalrgb
 
 git submodule update --init --recursive
 
-To add this module to your build, in your keymap's directory create a keymap.json with the following content:
+To add this module to your build, in your keymap's directory create a `keymap.json` with the following content:
 
 ```
 {
