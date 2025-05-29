@@ -1,3 +1,18 @@
 This is an early Work In Progress (WIP) Community module for QMK firmware allowing users to import this module in the userspace as a submodule and include SignalRGB's protocol.
 
 I highly recommend reading the [documentation](https://docs.qmk.fm/features/community_modules) on how to import and build with this.
+
+---
+
+To boil it down though the following should be done in your QMK source / git cloned directory:
+mkdir -p modules
+git submodule add https://github.com/SRGBmods/QMK_Community_Module modules/signalrgb
+git submodule update --init --recursive
+
+To add this module to your build, in your keymap's directory create a keymap.json with the following content:
+json
+{
+    "modules": [
+        "signalrgb"
+    ]
+}
