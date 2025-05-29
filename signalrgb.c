@@ -1,4 +1,6 @@
-//ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1,0,0);
+/* SignalRGB.c for SignalRGB Protocol */
+
+ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1, 0, 0);
 
 #ifndef RAW_ENABLE
 #    error "RAW HID Communication is not enabled" //This should be impossible to run into afaik. Common_features ensures RAWHID is enabled.
