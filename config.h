@@ -7,8 +7,11 @@
 /* This of course is assuming you've already tried LTO optimizations and such.
 */
 
+/* Limit at most 8 layers */
+#define LAYER_STATE_8BIT
+
 /* Remove RGB_LIGHT Effects */
-#undef RGBLIGHT_ANIMATIONS
+//#undef RGBLIGHT_ANIMATIONS
 #undef RGBLIGHT_EFFECT_BREATHING
 #undef RGBLIGHT_EFFECT_RAINBOW_MOOD
 #undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
