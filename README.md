@@ -12,7 +12,7 @@ git submodule add https://github.com/SRGBmods/QMK_Community_Module modules/signa
 
 git submodule update --init --recursive
 
-To add this module to your build, in qmk source folder/keyboards/**YOUR KEYBOARD**/keymap/**YOUR KEYMAP**/ directory create a `keymap.json` with the following content:
+To add this module to your build, in qmk source folder/keyboards/**YOUR KEYBOARD**/keymap/**YOUR KEYMAP**/ directory create a file named `keymap.json` with the following content:
 
 ```
 {
