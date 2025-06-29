@@ -1,10 +1,10 @@
 /*
-/* Things to consider if your firmware is too large
-/*
-/* Keep in mind this config.h does not apply to most builds but should either be applied to your keyboard's config.h
-/* or effects should be removed from the keyboard.json / info.json to help squeeze the firmware size down for your keyboard.
-/*
-/* This of course is assuming you've already tried LTO optimizations and such.
+* Things to consider if your firmware is too large
+*
+* Keep in mind this config.h does not apply to most builds but should either be applied to your keyboard's config.h
+* or effects should be removed from the keyboard.json / info.json to help squeeze the firmware size down for your keyboard.
+*
+* This of course is assuming you've already tried LTO optimizations and such.
 */
 
 /* Limit at most 8 layers */
