@@ -18,10 +18,10 @@ ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1,0,0);
 #if defined(RGBLIGHT_ENABLE) && defined(RGB_MATRIX_ENABLE)
     #define TOTAL_LEDS (RGBLIGHT_LED_COUNT + RGB_MATRIX_LED_COUNT)
     static const uint8_t RGBMATRIX_END = RGB_MATRIX_LED_COUNT;
-#elifdef(RGBLIGHT_ENABLE)
+#elif defined(RGBLIGHT_ENABLE)
     #define TOTAL_LEDS RGBLIGHT_LED_COUNT
     #define RGBMATRIX_END 0
-#elifdef(RGB_MATRIX_ENABLE)
+#elif defined(RGB_MATRIX_ENABLE)
     #define TOTAL_LEDS RGB_MATRIX_LED_COUNT
     #define RGBMATRIX_END RGB_MATRIX_LED_COUNT
 #else
@@ -64,9 +64,9 @@ void led_streaming(uint8_t *data) //Stream data from HID Packets to Keyboard.
 {
     uint8_t index = data[1];
     uint8_t numberofleds = data[2]; 
-    #ifdef(RGBLIGHT_ENABLE)
+    #if defined(RGBLIGHT_ENABLE)
         if(index + numberofleds > RGBLIGHT_LED_COUNT) {
-    #elifdef(RGB_MATRIX_ENABLE)
+    #elif defined(RGB_MATRIX_ENABLE)
         if(index + numberofleds > RGB_MATRIX_LED_COUNT) {
     #endif
         packet[1] = DEVICE_ERROR_LED_BOUNDS;
@@ -90,43 +90,43 @@ void led_streaming(uint8_t *data) //Stream data from HID Packets to Keyboard.
 
       bool isIndicator = false;
 
-      #ifdef(NUM_LOCK_LED_INDEX)
+      #if defined(NUM_LOCK_LED_INDEX)
       if ( (index + i) == NUM_LOCK_LED_INDEX && host_keyboard_led_state().num_lock ) isIndicator = true;
       #endif
 
-      #ifdef(NUM_LOCK_INDEX)
+      #if defined(NUM_LOCK_INDEX)
       if ( (index + i) == NUM_LOCK_INDEX && host_keyboard_led_state().num_lock ) isIndicator = true;
       #endif
 
-      #ifdef(CAPS_LOCK_LED_INDEX)
+      #if defined(CAPS_LOCK_LED_INDEX)
       if ( (index + i) == CAPS_LOCK_LED_INDEX && host_keyboard_led_state().caps_lock ) isIndicator = true;
       #endif
 
-      #ifdef(CAPS_MAC_WIN_LED_INDEX)
+      #if defined(CAPS_MAC_WIN_LED_INDEX)
       if ( (index + i) == CAPS_MAC_WIN_LED_INDEX && host_keyboard_led_state().caps_lock ) isIndicator = true;
       #endif
 
-      #ifdef(CAPS_LOCK_INDEX)
+      #if defined(CAPS_LOCK_INDEX)
       if ( (index + i) == CAPS_LOCK_INDEX && host_keyboard_led_state().caps_lock ) isIndicator = true;
       #endif
 
-      #ifdef(SCROLL_LOCK_INDEX)
+      #if defined(SCROLL_LOCK_INDEX)
       if ( (index + i) == SCROLL_LOCK_INDEX && host_keyboard_led_state().scroll_lock ) isIndicator = true;
       #endif
 
       if (isIndicator) {
 
-      #ifdef(RGBLIGHT_ENABLE)
+      #if defined(RGBLIGHT_ENABLE)
       rgblight_setrgb_at(255, 255, 255, index + i);
-      #elifdef(RGB_MATRIX_ENABLE)
+      #elif defined(RGB_MATRIX_ENABLE)
       rgb_matrix_set_color(index + i, 255, 255, 255);
       #endif
 
       } else {
 
-      #ifdef(RGBLIGHT_ENABLE)
+      #if defined(RGBLIGHT_ENABLE)
       rgblight_setrgb_at(r, g, b, index + i);
-      #elifdef(RGB_MATRIX_ENABLE)
+      #elif defined(RGB_MATRIX_ENABLE)
       rgb_matrix_set_color(index + i, r, g, b);
       #endif
         }
@@ -135,16 +135,16 @@ void led_streaming(uint8_t *data) //Stream data from HID Packets to Keyboard.
 
 void signalrgb_mode_enable(void)
 {
-    #ifdef(RGB_MATRIX_ENABLE)
+    #if defined(RGB_MATRIX_ENABLE)
     rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SIGNALRGB); //Set RGB Matrix to SignalRGB Compatible Mode
     #endif
 }
 
 void signalrgb_mode_disable(void)
 {
-    #ifdef(RGBLIGHT_ENABLE)
+    #if defined(RGBLIGHT_ENABLE)
     rgblight_reload_from_eeprom();
-    #elifdef(RGB_MATRIX_ENABLE)
+    #elif defined(RGB_MATRIX_ENABLE)
     rgb_matrix_reload_from_eeprom(); //Reloading last effect from eeprom
     #endif
 }
@@ -152,9 +152,9 @@ void signalrgb_mode_disable(void)
 void get_total_leds(void)//Grab total number of leds that a board has.
 {
     packet[0] = GET_TOTAL_LEDS;
-    #ifdef(RGBLIGHT_ENABLE)
+    #if defined(RGBLIGHT_ENABLE)
     packet[1] = RGBLIGHT_LED_COUNT;
-    #elifdef(RGB_MATRIX_ENABLE)
+    #elif defined(RGB_MATRIX_ENABLE)
     packet[1] = RGB_MATRIX_LED_COUNT;
     #endif
 
@@ -226,7 +226,7 @@ bool srgb_raw_hid_rx(uint8_t *data, uint8_t length) {
 // This is always fun as different forks call either raw_hid_receive or via_command_kb 
 // So this will probably always need to be massaged to work. When in doubt try raw_hid_receive_kb.
 
-#ifdef(VIA_ENABLE)
+#if defined(VIA_ENABLE)
 bool via_command_kb(uint8_t *data, uint8_t length) {
     return srgb_raw_hid_rx(data, length);
 //void raw_hid_receive_kb(uint8_t *data, uint8_t length) {
