@@ -12,6 +12,21 @@ enum signalrgb_commands
     GET_FIRMWARE_TYPE = 0x28,
 };
 
+#define PROTOCOL_VERSION_BYTE_1 1
+#define PROTOCOL_VERSION_BYTE_2 0
+#define PROTOCOL_VERSION_BYTE_3 6
+#define DEVICE_UNIQUE_IDENTIFIER_BYTE_1 0
+#define DEVICE_UNIQUE_IDENTIFIER_BYTE_2 0
+
+#ifndef DEVICE_UNIQUE_IDENTIFIER_BYTE_3
+#define DEVICE_UNIQUE_IDENTIFIER_BYTE_3 0
+#endif
+
+#define FIRMWARE_TYPE_BYTE 2
+#define DEVICE_ERROR_LED_BOUNDS 253
+#define DEVICE_ERROR_LED_COUNT 254
+
+/*
 enum signalrgb_responses
 {
     PROTOCOL_VERSION_BYTE_1 = 1,
@@ -24,6 +39,7 @@ enum signalrgb_responses
     DEVICE_ERROR_LED_BOUNDS = 253,
     DEVICE_ERROR_LED_COUNT = 254 
 };
+*/
 
 void get_qmk_version(void);
 void get_signalrgb_protocol_version(void);
